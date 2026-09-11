@@ -1,0 +1,30 @@
+services:
+  frontend:
+    image: my-fe
+    ports:
+      - "5173:80"
+
+  backend:
+    image: my-be
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./backend/.env
+    
+
+  mysql:
+    image: mysql:9.4
+    environment:
+      MYSQL_ROOT_PASSWORD: tien
+      MYSQL_DATABASE: cinema 
+    volumes: 
+      - mysql-data:/var/lib/mysql
+
+  redis: 
+    image: redis:latest
+    ports: 
+      - "6379:6379"
+
+
+volumes: 
+  mysql-data:
